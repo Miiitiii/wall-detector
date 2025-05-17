@@ -2,14 +2,14 @@
 
 scratch:
   resolution: 640
-  train_batch_size: 4
-  num_train_workers: 1
+  train_batch_size: 1
+  num_train_workers: 10
   num_frames: 1
-  max_num_objects: 5
-  base_lr: 5.0e-06
+  max_num_objects: 3
+  base_lr: 5.0e-6
   vision_lr: 3.0e-06
   phases_per_epoch: 1
-  num_epochs: 20
+  num_epochs: 40
 
 dataset:
   # PATHS to Dataset
@@ -231,7 +231,8 @@ trainer:
 
   optim:
     amp:
-      enabled: False
+      enabled: True
+      amp_dtype: bfloat16
 
     optimizer:
       _target_: torch.optim.AdamW
@@ -331,3 +332,4 @@ submitit:
   timeout_hour: 24
   name: null
   port_range: [10000, 65000]
+
